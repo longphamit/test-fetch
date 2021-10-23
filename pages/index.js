@@ -16,7 +16,7 @@ export default function Home() {
       url_active_account: "123"
     };
     console.log(data)
-    callFetch(data);
+    //callFetch(data);
     calllAxios(data);
    
   };
