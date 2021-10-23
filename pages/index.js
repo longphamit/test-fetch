@@ -1,4 +1,5 @@
 import { Button, Checkbox, Input,Form } from 'antd'
+import axios from 'axios';
 import _fetch from 'isomorphic-fetch';
 import Head from 'next/head'
 import Image from 'next/image'
@@ -15,6 +16,24 @@ export default function Home() {
       url_active_account: "123"
     };
     console.log(data)
+    callFetch(data);
+    calllAxios(data);
+   
+  };
+  const calllAxios=(data)=>{
+    axios.post('https://api-dev.ecomos.vn:8443/gateway-service/v1/customers/register/UAUAP',data,{headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }})
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+  const callFetch=(data)=>{
+     
     _fetch('https://api-dev.ecomos.vn:8443/gateway-service/v1/customers/register/UAUAP',{
       headers: {
         'Accept': 'application/json',
@@ -32,7 +51,7 @@ export default function Home() {
     .then(function(stories) {
         console.log(stories);
     });
-  };
+  }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
